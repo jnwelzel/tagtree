@@ -3,13 +3,9 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true,
+    node: true
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:qwik/recommended",
-  ],
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:qwik/recommended", "plugin:storybook/recommended"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     tsconfigRootDir: __dirname,
@@ -17,8 +13,8 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: "module",
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   plugins: ["@typescript-eslint"],
   rules: {
@@ -37,6 +33,6 @@ module.exports = {
     "no-console": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/consistent-type-imports": "warn",
-    "@typescript-eslint/no-unnecessary-condition": "warn",
-  },
+    "@typescript-eslint/no-unnecessary-condition": "warn"
+  }
 };
