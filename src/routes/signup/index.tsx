@@ -24,7 +24,7 @@ export const useAddUser = routeAction$(
           email: user.email,
           accessToken,
         }),
-        { httpOnly: true, secure: true, maxAge: [1, "hours"] }
+        { httpOnly: true, secure: true, maxAge: [1, "hours"], path: "/" }
       );
 
       // Redirect to admin page
