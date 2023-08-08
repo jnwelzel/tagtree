@@ -1,6 +1,6 @@
 {
-  "name": "my-qwik-empty-starter",
-  "description": "App with Routing built-in ready to create your app",
+  "name": "tagtree",
+  "description": "Share all your gamer tags from one place.",
   "engines": {
     "node": ">=15.0.0"
   },
@@ -20,7 +20,8 @@
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
     "storybook": "storybook dev -p 6006",
-    "qwik": "qwik"
+    "qwik": "qwik",
+    "api": "json-server-auth db.json --r routes.json"
   },
   "devDependencies": {
     "@builder.io/qwik": "^1.2.6",
@@ -40,6 +41,9 @@
     "eslint": "8.44.0",
     "eslint-plugin-qwik": "^1.2.6",
     "eslint-plugin-storybook": "^0.6.13",
+    "express": "^4.18.2",
+    "json-server": "^0.17.3",
+    "json-server-auth": "^2.1.0",
     "postcss": "^8.4.27",
     "prettier": "2.8.8",
     "storybook": "7.2.1",

@@ -5,7 +5,7 @@ export default component$(() => {
   return (
     <>
       <h1 class="text-2xl">All your gamer tags in one place.</h1>
-      <Link href="/signup">Sign up</Link>
+      <Link href="/signup">Create an account</Link>
     </>
   );
 });
