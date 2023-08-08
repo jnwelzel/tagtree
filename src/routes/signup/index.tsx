@@ -26,14 +26,14 @@ export const useAddUser = routeAction$(
         }),
         { httpOnly: true, secure: true, maxAge: [1, "hours"], path: "/" }
       );
-
-      // Redirect to admin page
-      throw redirect(308, EndpointEnum.Admin);
     } catch (e) {
       return fail(400, {
         message: getErrorMessage(e),
       });
     }
+
+    // Redirect to admin page
+    throw redirect(308, EndpointEnum.Admin);
   },
   zod$({
     email: z.string().email({ message: "Invalid email address" }),
