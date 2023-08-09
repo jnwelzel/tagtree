@@ -1,3 +1,11 @@
 {
-  "users": []
+  "users": [
+    {
+      "email": "jnwelzel@gmail.com",
+      "password": "$2a$10$YMdVEvemelYqoEjLfehPzOTuvC7wUfTznrf7LTKppmxYhWLOGw4Le",
+      "username": "jonshin",
+      "newsletter": false,
+      "id": 1
+    }
+  ]
 }
