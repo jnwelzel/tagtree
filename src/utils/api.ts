@@ -2,6 +2,8 @@ export enum EndpointEnum {
   Signup = "/signup",
   Login = "/login",
   Admin = "/admin",
+  Tags = "/tags",
+  Users = "/users",
 }
 
 async function request<TResponse>(
@@ -20,18 +22,35 @@ async function request<TResponse>(
   return result;
 }
 
+const BASE_HEADERS = {
+  Accept: "application/json",
+};
+
 export const api = {
-  get: <TResponse>(url: string) => request<TResponse>(url),
+  get: <TResponse>(endpoint: EndpointEnum | string, accessToken?: string) =>
+    request<TResponse>(`${import.meta.env.PUBLIC_API_URL}${endpoint}`, {
+      method: "GET",
+      headers: accessToken
+        ? { Authorization: `Bearer ${accessToken}`, ...BASE_HEADERS }
+        : BASE_HEADERS,
+    }),
   post: <TBody extends object, TResponse>(
-    endpoint: EndpointEnum,
-    body: TBody
+    endpoint: EndpointEnum | string,
+    body: TBody,
+    accessToken?: string
   ) =>
     request<TResponse>(`${import.meta.env.PUBLIC_API_URL}${endpoint}`, {
       method: "POST",
       body: JSON.stringify(body),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers: accessToken
+        ? {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+            ...BASE_HEADERS,
+          }
+        : {
+            "Content-Type": "application/json",
+            ...BASE_HEADERS,
+          },
     }),
 };

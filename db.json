@@ -7,5 +7,19 @@
       "newsletter": false,
       "id": 1
     }
+  ],
+  "tags": [
+    {
+      "name": "foo",
+      "value": "bar",
+      "userId": "1",
+      "id": 1
+    },
+    {
+      "name": "PSN",
+      "value": "jon_weasel",
+      "userId": "1",
+      "id": 2
+    }
   ]
 }

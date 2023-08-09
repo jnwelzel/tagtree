@@ -4,6 +4,7 @@ import { loginUser } from "./helper";
 import { getErrorMessage } from "~/utils/errorHandling";
 import { EndpointEnum } from "~/utils/api";
 import CookiesEnum from "~/utils/CookiesEnum";
+import type { SessionCookie } from "../admin";
 
 export const useLoginUser = routeAction$(
   async (userLogin, { fail, cookie, redirect }) => {
@@ -15,15 +16,19 @@ export const useLoginUser = routeAction$(
       });
 
       // Set session cookie
-      cookie.set(
-        CookiesEnum.Session,
-        JSON.stringify({
-          email: authUser.email,
-          username: authUser.username,
-          accessToken,
-        }),
-        { httpOnly: true, secure: true, maxAge: [1, "hours"], path: "/" }
-      );
+      const sessionCookieData = {
+        username: authUser.username,
+        email: authUser.email,
+        accessToken,
+        userId: authUser.id,
+      } as SessionCookie;
+
+      cookie.set(CookiesEnum.Session, JSON.stringify(sessionCookieData), {
+        httpOnly: true,
+        secure: true,
+        maxAge: [1, "hours"],
+        path: "/",
+      });
     } catch (error) {
       return fail(400, {
         message: getErrorMessage(error),
