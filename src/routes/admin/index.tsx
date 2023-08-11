@@ -64,11 +64,7 @@ export default component$(() => {
           }}
         >
           <input type="text" name="name" placeholder="PSN, XBox, Steam..." />
-          <input
-            type="text"
-            name="value"
-            placeholder="ninja, dr_respect, lady_thug..."
-          />
+          <input type="text" name="value" placeholder="ninja, dr_respect..." />
           <button type="submit">Add</button>
           <button type="button" onClick$={() => (isFormOpen.value = false)}>
             Cancel
@@ -85,6 +81,8 @@ export default component$(() => {
             <div key={tag.id} class="p-2 border my-2 rounded drop-shadow-sm">
               <p>{tag.name}</p>
               <p>{tag.value}</p>
+              <button>Edit</button>
+              <button>Delete</button>
             </div>
           ))}
         </div>

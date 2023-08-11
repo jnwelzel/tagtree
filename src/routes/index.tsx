@@ -1,11 +1,15 @@
 import { component$ } from "@builder.io/qwik";
-import { Link, type DocumentHead } from "@builder.io/qwik-city";
+import { type DocumentHead } from "@builder.io/qwik-city";
+import { Link } from "~/components/link/link";
 
 export default component$(() => {
   return (
     <>
       <h1 class="text-2xl">All your gamer tags in one place.</h1>
-      <Link href="/signup">Create an account</Link>
+      <p>
+        <Link href="/signup">Create an account</Link> or{" "}
+        <Link href="/signup">log in</Link>.
+      </p>
     </>
   );
 });
@@ -15,7 +19,7 @@ export const head: DocumentHead = {
   meta: [
     {
       name: "description",
-      content: "Manage and share your gamer tags.",
+      content: "Manage and share your gamer tags, all in one place.",
     },
   ],
 };
