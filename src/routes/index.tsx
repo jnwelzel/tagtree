@@ -8,7 +8,7 @@ export default component$(() => {
       <h1 class="text-2xl">All your gamer tags in one place.</h1>
       <p>
         <Link href="/signup">Create an account</Link> or{" "}
-        <Link href="/signup">log in</Link>.
+        <Link href="/login">log in</Link>.
       </p>
     </>
   );
