@@ -9,6 +9,8 @@ import {
 import CookiesEnum from "~/utils/CookiesEnum";
 import { addTag, getUserTags } from "./helper";
 import Logout from "~/components/logout/logout";
+import Tag from "~/components/tag/tag";
+import Plus from "~/components/icons/plus";
 
 export type SessionCookie = {
   email: string;
@@ -57,7 +59,12 @@ export default component$(() => {
         Welcome {signal.value.username} (<Logout />)
       </h1>
       {!isFormOpen.value && (
-        <button onClick$={() => (isFormOpen.value = true)}>+ Add tag</button>
+        <button
+          onClick$={() => (isFormOpen.value = true)}
+          class="flex items-center"
+        >
+          <Plus /> Add tag
+        </button>
       )}
       {isFormOpen.value && (
         <Form
@@ -81,12 +88,7 @@ export default component$(() => {
       {signal.value.tags.length > 0 && (
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           {signal.value.tags.map((tag) => (
-            <div key={tag.id} class="p-2 border my-2 rounded drop-shadow-sm">
-              <p>{tag.name}</p>
-              <p>{tag.value}</p>
-              <button>Edit</button>
-              <button>Delete</button>
-            </div>
+            <Tag key={tag.id} {...tag} />
           ))}
         </div>
       )}
