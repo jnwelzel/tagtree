@@ -8,6 +8,7 @@ import {
 } from "@builder.io/qwik-city";
 import CookiesEnum from "~/utils/CookiesEnum";
 import { addTag, getUserTags } from "./helper";
+import Logout from "~/components/logout/logout";
 
 export type SessionCookie = {
   email: string;
@@ -52,7 +53,9 @@ export default component$(() => {
 
   return (
     <>
-      <h1 class="text-xl">Welcome {signal.value.username}</h1>
+      <h1 class="text-xl">
+        Welcome {signal.value.username} (<Logout />)
+      </h1>
       {!isFormOpen.value && (
         <button onClick$={() => (isFormOpen.value = true)}>+ Add tag</button>
       )}
