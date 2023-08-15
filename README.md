@@ -6,8 +6,10 @@
 - [x] ui state logged in/out (see middleware)
 - [x] logout
 - [ ] delete/edit tags
+- [ ] user bio
 - [ ] labels for tags (alt account, abandoned, main account)
 - [ ] public profile endpoint (view a user's tags by their username ie. "www.tagtree.link/@jonshin")
+- [ ] reorder tags (drag n drop)
 - [ ] sorting/searching of tags
 - [ ] pub/unpublish profile (settings)
 - [ ] email visible? (settings)

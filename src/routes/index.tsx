@@ -32,7 +32,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Tagtree",
+  title: "Tagtree | All your gamer tags in one place.",
   meta: [
     {
       name: "description",
