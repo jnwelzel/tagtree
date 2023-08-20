@@ -17,15 +17,15 @@
     },
     {
       "name": "PSN",
-      "value": "jon_weasel",
-      "userId": "1",
-      "id": 2
+      "value": "chulapa",
+      "id": 2,
+      "userId": 1
     },
     {
-      "name": "XBox",
-      "value": "jon_corleone",
-      "userId": "1",
-      "id": 3
+      "name": "ayy",
+      "value": "lmao",
+      "id": 3,
+      "userId": 1
     }
   ]
 }

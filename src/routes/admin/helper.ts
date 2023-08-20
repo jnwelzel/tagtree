@@ -13,7 +13,7 @@ export type TagDTO = {
 };
 
 export const getUserTags = async (
-  userId: number,
+  userId: string,
   accessToken: string
 ): Promise<[Tag] | []> => {
   const tags = api.get<[Tag]>(
@@ -26,7 +26,7 @@ export const getUserTags = async (
 
 export const addTag = async (
   tag: TagDTO,
-  userId: number,
+  userId: string,
   accessToken: string
 ): Promise<Tag> => {
   return await api.post<TagDTO, Tag>(
@@ -38,11 +38,18 @@ export const addTag = async (
 
 export const deleteTag = async (
   tagId: string,
-  userId: number,
   accessToken: string
 ): Promise<boolean> => {
   return await api.delete<boolean>(
     `${EndpointEnum.Tags}/${tagId}`,
+    accessToken
+  );
+};
+
+export const editTag = async (tag: Tag, accessToken: string): Promise<Tag> => {
+  return await api.put<Tag, Tag>(
+    `${EndpointEnum.Tags}/${tag.id}`,
+    tag,
     accessToken
   );
 };

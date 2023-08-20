@@ -7,7 +7,7 @@ import {
   zod$,
 } from "@builder.io/qwik-city";
 import CookiesEnum from "~/utils/CookiesEnum";
-import { addTag, deleteTag, getUserTags } from "./helper";
+import { addTag, deleteTag, editTag, getUserTags } from "./helper";
 import Logout from "~/components/logout/logout";
 import Plus from "~/components/icons/plus";
 import Tag from "./tag";
@@ -16,7 +16,7 @@ export type SessionCookie = {
   email: string;
   username: string;
   accessToken: string;
-  userId: number;
+  userId: string;
 };
 
 export const useUserData = routeLoader$(async ({ cookie, redirect }) => {
@@ -50,14 +50,36 @@ export const useAddTag = routeAction$(
 
 export const useDeleteTag = routeAction$(
   async (tag, { cookie }) => {
-    const { userId, accessToken } = cookie
+    const { accessToken } = cookie
       .get(CookiesEnum.Session)
       ?.json() as SessionCookie;
-    const success = await deleteTag(tag.tagId, userId, accessToken);
+    const success = await deleteTag(tag.tagId, accessToken);
     return success;
   },
   zod$({
     tagId: z.string(),
+  })
+);
+
+export const useEditTag = routeAction$(
+  async (tag, { cookie }) => {
+    const { accessToken, userId } = cookie
+      .get(CookiesEnum.Session)
+      ?.json() as SessionCookie;
+
+    const dto = {
+      name: tag.name,
+      value: tag.value,
+      id: parseInt(tag.tagId),
+      userId,
+    };
+
+    await editTag(dto, accessToken);
+  },
+  zod$({
+    tagId: z.string(),
+    name: z.string(),
+    value: z.string(),
   })
 );
 
@@ -86,7 +108,12 @@ export default component$(() => {
             isFormOpen.value = false;
           }}
         >
-          <input type="text" name="name" placeholder="PSN, XBox, Steam..." />
+          <input
+            type="text"
+            name="name"
+            placeholder="PSN, XBox, Steam..."
+            autoFocus
+          />
           <input type="text" name="value" placeholder="ninja, dr_respect..." />
           <button type="submit">Add</button>
           <button type="button" onClick$={() => (isFormOpen.value = false)}>

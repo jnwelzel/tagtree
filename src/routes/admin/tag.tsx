@@ -1,6 +1,6 @@
 import { component$, useSignal } from "@builder.io/qwik";
 import Trash from "~/components/icons/trash";
-import { useDeleteTag } from ".";
+import { useDeleteTag, useEditTag } from ".";
 import { Form } from "@builder.io/qwik-city";
 
 interface TagProps {
@@ -16,6 +16,7 @@ export default component$<TagProps>(({ name, value, id }) => {
   const tagValue = useSignal(value);
 
   const deleteAction = useDeleteTag();
+  const editAction = useEditTag();
 
   return (
     <article class="flex flex-col border rounded-md drop-shadow-sm relative z-0">
@@ -26,6 +27,7 @@ export default component$<TagProps>(({ name, value, id }) => {
           </div>
           <div class="flex justify-evenly p-2 pt-0">
             <button
+              type="button"
               onClick$={() => (isDelete.value = false)}
               class="rounded-full bg-white text-black px-4 py-1 font-medium"
             >
@@ -33,6 +35,7 @@ export default component$<TagProps>(({ name, value, id }) => {
             </button>
             <Form action={deleteAction}>
               <button
+                type="submit"
                 name="tagId"
                 value={id}
                 class="rounded-full bg-violet-400 text-white px-4 py-1 font-medium"
@@ -45,28 +48,38 @@ export default component$<TagProps>(({ name, value, id }) => {
       )}
       {isEdit.value && (
         <div class="absolute z-10 top-0 bottom-0 left-0 right-0 bg-white rounded-md flex flex-col">
-          <div class="grid grid-cols-2 gap-1">
-            <input type="text" bind:value={tagName} />
-            <input type="text" bind:value={tagValue} />
-          </div>
-          <div class="flex justify-evenly">
-            <button
-              onClick$={() => {
-                tagName.value = name;
-                tagValue.value = value;
-                isEdit.value = false;
-              }}
-              class="rounded-full border px-4 py-1 font-medium"
-            >
-              Cancel
-            </button>
-            <button
-              class="rounded-full bg-violet-400 text-white px-4 py-1 font-medium"
-              onClick$={() => {}}
-            >
-              Save
-            </button>
-          </div>
+          <Form
+            action={editAction}
+            onSubmitCompleted$={() => {
+              isEdit.value = false;
+            }}
+          >
+            <div class="grid grid-cols-2 gap-1">
+              <input type="text" bind:value={tagName} name="name" />
+              <input type="text" bind:value={tagValue} name="value" />
+            </div>
+            <div class="flex justify-evenly">
+              <button
+                type="reset"
+                onClick$={() => {
+                  tagName.value = name;
+                  tagValue.value = value;
+                  isEdit.value = false;
+                }}
+                class="rounded-full border px-4 py-1 font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                name="tagId"
+                value={id}
+                class="rounded-full bg-violet-400 text-white px-4 py-1 font-medium"
+              >
+                Save
+              </button>
+            </div>
+          </Form>
         </div>
       )}
       <div class="border-b">

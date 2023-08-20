@@ -2,7 +2,16 @@ import { EndpointEnum, api } from "~/utils/api";
 import type { Tag } from "../admin/helper";
 
 export type User = {
-  id?: number;
+  id: number;
+  email: string;
+  username: string;
+  newsletter: boolean;
+  password: string;
+  activatedAt?: string;
+  tags?: [Tag] | [];
+};
+
+export type UserDTO = {
   email: string;
   username: string;
   newsletter: boolean;
@@ -16,6 +25,6 @@ interface JSONResponse {
   user: User;
 }
 
-export const addUser = async (user: User): Promise<JSONResponse> => {
-  return await api.post<User, JSONResponse>(EndpointEnum.Signup, user);
+export const addUser = async (user: UserDTO): Promise<JSONResponse> => {
+  return await api.post<UserDTO, JSONResponse>(EndpointEnum.Signup, user);
 };

@@ -15,6 +15,8 @@
 - [ ] email visible? (settings)
 - [ ] other contact data and visibility (settings)
 - [ ] email confirmation
+- [ ] oauth to add tags
+- [ ] handle API connection error
 - [ ] icons
 - [ ] transitions/animations
 - [ ] organize types

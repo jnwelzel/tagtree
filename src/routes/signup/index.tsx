@@ -23,7 +23,7 @@ export const useAddUser = routeAction$(
         username: authUser.username,
         email: authUser.email,
         accessToken,
-        userId: authUser.id,
+        userId: authUser.id.toString(),
       } as SessionCookie;
 
       cookie.set(CookiesEnum.Session, JSON.stringify(sessionCookieData), {

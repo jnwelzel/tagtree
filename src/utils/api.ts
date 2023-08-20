@@ -10,7 +10,13 @@ async function request<TResponse>(
   url: string,
   config: RequestInit = {}
 ): Promise<TResponse> {
-  const response = await fetch(url, config);
+  let response;
+
+  try {
+    response = await fetch(url, config);
+  } catch {
+    throw new Error("API connection failed.");
+  }
 
   if (!response.ok) {
     const errorMessage = await response.text();
@@ -59,5 +65,24 @@ export const api = {
       headers: accessToken
         ? { Authorization: `Bearer ${accessToken}`, ...BASE_HEADERS }
         : BASE_HEADERS,
+    }),
+  put: <TBody extends object, TResponse>(
+    endpoint: EndpointEnum | string,
+    body: TBody,
+    accessToken?: string
+  ) =>
+    request<TResponse>(`${import.meta.env.PUBLIC_API_URL}${endpoint}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+      headers: accessToken
+        ? {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+            ...BASE_HEADERS,
+          }
+        : {
+            "Content-Type": "application/json",
+            ...BASE_HEADERS,
+          },
     }),
 };
