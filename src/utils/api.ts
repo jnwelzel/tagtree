@@ -53,4 +53,11 @@ export const api = {
             ...BASE_HEADERS,
           },
     }),
+  delete: <TResponse>(endpoint: EndpointEnum | string, accessToken?: string) =>
+    request<TResponse>(`${import.meta.env.PUBLIC_API_URL}${endpoint}`, {
+      method: "DELETE",
+      headers: accessToken
+        ? { Authorization: `Bearer ${accessToken}`, ...BASE_HEADERS }
+        : BASE_HEADERS,
+    }),
 };

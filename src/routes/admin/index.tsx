@@ -7,10 +7,10 @@ import {
   zod$,
 } from "@builder.io/qwik-city";
 import CookiesEnum from "~/utils/CookiesEnum";
-import { addTag, getUserTags } from "./helper";
+import { addTag, deleteTag, getUserTags } from "./helper";
 import Logout from "~/components/logout/logout";
-import Tag from "~/components/tag/tag";
 import Plus from "~/components/icons/plus";
+import Tag from "./tag";
 
 export type SessionCookie = {
   email: string;
@@ -48,10 +48,23 @@ export const useAddTag = routeAction$(
   })
 );
 
+export const useDeleteTag = routeAction$(
+  async (tag, { cookie }) => {
+    const { userId, accessToken } = cookie
+      .get(CookiesEnum.Session)
+      ?.json() as SessionCookie;
+    const success = await deleteTag(tag.tagId, userId, accessToken);
+    return success;
+  },
+  zod$({
+    tagId: z.string(),
+  })
+);
+
 export default component$(() => {
   const signal = useUserData();
   const isFormOpen = useSignal(false);
-  const action = useAddTag();
+  const addTagAction = useAddTag();
 
   return (
     <>
@@ -68,7 +81,7 @@ export default component$(() => {
       )}
       {isFormOpen.value && (
         <Form
-          action={action}
+          action={addTagAction}
           onSubmitCompleted$={() => {
             isFormOpen.value = false;
           }}

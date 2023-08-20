@@ -17,3 +17,5 @@
 - [ ] email confirmation
 - [ ] icons
 - [ ] transitions/animations
+- [ ] organize types
+- [ ] username unique constraint
