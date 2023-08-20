@@ -53,5 +53,16 @@
     "undici": "5.22.1",
     "vite": "4.4.9",
     "vite-tsconfig-paths": "4.2.0"
+  },
+  "overrides": {
+    "json-server-auth": {
+      "jsonwebtoken": "9.0.0"
+    }
+  },
+  "pnpm": {
+    "overrides": {
+      "jsonwebtoken@<=8.5.1": ">=9.0.0",
+      "jsonwebtoken@<9.0.0": ">=9.0.0"
+    }
   }
 }
