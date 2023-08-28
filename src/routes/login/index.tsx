@@ -21,7 +21,7 @@ export const useLoginUser = routeAction$(
         username: authUser.username,
         email: authUser.email,
         accessToken,
-        userId: authUser.id,
+        userId: authUser.id.toString(),
       } as SessionCookie;
 
       cookie.set(CookiesEnum.Session, JSON.stringify(sessionCookieData), {
@@ -63,7 +63,12 @@ export default component$(() => {
           <p class="text-red-500">{action.value.fieldErrors?.password}</p>
         )}
         <p>Forgot password?</p>
-        <button type="submit">Log in</button>
+        <button
+          type="submit"
+          class="rounded-full bg-violet-400 text-white px-4 py-2 font-medium mb-3"
+        >
+          Log in
+        </button>
         <p>
           Don't have an account? <Link href="/signup">Sign up</Link>
         </p>

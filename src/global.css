@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+
 /**
  * Tailwind CSS imports
  * View the full documentation at https://tailwindcss.com
@@ -21,9 +23,16 @@ html {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    height: 100%;
 }
 
 body {
   padding: 0;
   line-height: inherit;
+  background-color: #f3f3f1;
+  height: 100%;
+}
+
+.tagtree {
+  font-family: 'Sedgwick Ave Display', cursive;
 }

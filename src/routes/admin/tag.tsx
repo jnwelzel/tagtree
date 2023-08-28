@@ -19,7 +19,7 @@ export default component$<TagProps>(({ name, value, id }) => {
   const editAction = useEditTag();
 
   return (
-    <article class="flex flex-col border rounded-md drop-shadow-sm relative z-0">
+    <article class="flex flex-col border rounded-md drop-shadow-sm relative z-0 bg-white">
       {isDelete.value && (
         <div class="absolute z-10 top-0 bottom-0 left-0 right-0 bg-red-500 text-white rounded-md flex flex-col">
           <div class="flex items-center justify-center flex-1">
@@ -66,7 +66,7 @@ export default component$<TagProps>(({ name, value, id }) => {
                   tagValue.value = value;
                   isEdit.value = false;
                 }}
-                class="rounded-full border px-4 py-1 font-medium"
+                class="rounded-full border px-4 py-1 font-medium bg-white"
               >
                 Cancel
               </button>

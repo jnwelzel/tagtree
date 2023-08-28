@@ -82,7 +82,12 @@ export default component$(() => {
           By clicking <b>Create account</b>, you agree to Tagtree's Terms and
           Conditions and confirm you have read our Privacy Notice.
         </p>
-        <button type="submit">Create account</button>
+        <button
+          type="submit"
+          class="rounded-full bg-violet-400 text-white px-4 py-2 font-medium mb-3"
+        >
+          Create account
+        </button>
       </Form>
       {action.value?.failed && (
         <p class="text-red-500">{action.value.message}</p>

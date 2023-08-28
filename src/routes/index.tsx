@@ -13,21 +13,27 @@ export default component$(() => {
   const signal = useSessionData();
 
   return (
-    <>
-      <h1 class="text-2xl">All your gamer tags in one place.</h1>
-      {signal.value.isLoggedIn && (
-        <>
-          <Link href="/admin">Admin</Link>
-          <Link href="/logout">Log out</Link>
-        </>
-      )}
-      {!signal.value.isLoggedIn && (
-        <p>
-          <Link href="/signup">Create an account</Link> or{" "}
-          <Link href="/login">log in</Link>.
-        </p>
-      )}
-    </>
+    <div class="flex flex-col min-h-full text-center">
+      <div class="flex-1">
+        {signal.value.isLoggedIn && (
+          <>
+            <Link href="/admin">Admin</Link>
+            <Link href="/logout">Log out</Link>
+          </>
+        )}
+        {!signal.value.isLoggedIn && (
+          <>
+            <Link href="/signup">Create an account</Link> or{" "}
+            <Link href="/login">log in</Link>.
+          </>
+        )}
+      </div>
+      <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-9 text-white flex-1 flex flex-col items-center justify-center">
+        <h1 class="text-7xl md:text-9xl tagtree drop-shadow-md">Tagtree</h1>
+        <h2 class="text-xl">All your gamer tags in one place.</h2>
+      </div>
+      <div class="flex-1">footer</div>
+    </div>
   );
 });
 
