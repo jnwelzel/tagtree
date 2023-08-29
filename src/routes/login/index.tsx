@@ -51,35 +51,41 @@ export default component$(() => {
   const action = useLoginUser();
 
   return (
-    <>
-      <h1 class="text-xl">Login</h1>
-      <Form class="flex flex-col" action={action}>
-        <input type="email" name="email" placeholder="Email" autoFocus />
-        {action.value?.failed && (
-          <p class="text-red-500">{action.value.fieldErrors?.email}</p>
-        )}
-        <input type="password" name="password" placeholder="Password" />
-        {action.value?.failed && (
-          <p class="text-red-500">{action.value.fieldErrors?.password}</p>
-        )}
-        <p>Forgot password?</p>
-        <button
-          type="submit"
-          class="rounded-full bg-violet-400 text-white px-4 py-2 font-medium mb-3"
+    <div class="flex flex-col min-h-full">
+      <h1 class="text-xl flex-1">Welcome back!</h1>
+      <div class="flex-1 px-3 md:px-0 md:w-2/3 lg:w-1/3 ml-auto mr-auto justify-start flex flex-col">
+        <Form
+          class="grid grid-cols-1 gap-3 p-5 border bg-white rounded-md drop-shadow-md"
+          action={action}
         >
-          Log in
-        </button>
-        <p>
-          Don't have an account? <Link href="/signup">Sign up</Link>
-        </p>
-        <p>
-          This site is protected by reCAPTCHA and the Google Privacy Policy and
-          Terms of Service apply.
-        </p>
-      </Form>
-      {action.value?.failed && (
-        <p class="text-red-500">{action.value.message}</p>
-      )}
-    </>
+          <input type="email" name="email" placeholder="Email" autoFocus />
+          {action.value?.failed && (
+            <p class="text-red-500">{action.value.fieldErrors?.email}</p>
+          )}
+          <input type="password" name="password" placeholder="Password" />
+          {action.value?.failed && (
+            <p class="text-red-500">{action.value.fieldErrors?.password}</p>
+          )}
+          {action.value?.failed && (
+            <p class="text-red-500">{action.value.message}</p>
+          )}
+          <p>Forgot password?</p>
+          <button
+            type="submit"
+            class="rounded-full bg-violet-400 text-white px-4 py-2 font-medium"
+          >
+            Log in
+          </button>
+          <p>
+            Don't have an account? <Link href="/signup">Sign up</Link>
+          </p>
+          <p>
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </p>
+        </Form>
+      </div>
+      <div class="flex-1">Footer</div>
+    </div>
   );
 });

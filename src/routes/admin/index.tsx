@@ -1,4 +1,4 @@
-import { component$, useSignal, useStylesScoped$ } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 import {
   Form,
   routeAction$,
@@ -11,7 +11,6 @@ import { addTag, deleteTag, editTag, getUserTags } from "./helper";
 import Logout from "~/components/logout/logout";
 import Plus from "~/components/icons/plus";
 import Tag from "./tag";
-import styles from "./index.css?inline";
 
 export type SessionCookie = {
   email: string;
@@ -88,15 +87,12 @@ export default component$(() => {
   const signal = useUserData();
   const isFormOpen = useSignal(false);
   const addTagAction = useAddTag();
-  useStylesScoped$(styles);
 
   return (
     <>
       <nav class="bg-gray-800 text-white py-4 px-3 mb-6 grid grid-cols-12 2xl:px-0">
         <div class="col-span-full 2xl:col-start-2 2xl:col-end-12 text-right flex items-center">
-          <div class="mr-auto tagtree nav-tagtree text-2xl text-violet-300">
-            Tagtree
-          </div>
+          <div class="mr-auto tagtree text-2xl text-white">Tagtree</div>
           <div>
             Welcome <b class="text-violet-300">{signal.value.username}</b> (
             <Logout />)

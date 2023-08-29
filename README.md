@@ -5,7 +5,9 @@
 # TODO
 - [x] ui state logged in/out (see middleware)
 - [x] logout
-- [ ] delete/edit tags
+- [x] delete/edit tags
+- [ ] forgot password
+- [ ] create/update at for tags
 - [ ] user bio
 - [ ] labels for tags (alt account, abandoned, main account)
 - [ ] public profile endpoint (view a user's tags by their username ie. "www.tagtree.link/@jonshin")
