@@ -6,6 +6,7 @@ import CookiesEnum from "~/utils/CookiesEnum";
 import { EndpointEnum } from "~/utils/api";
 import type { SessionCookie } from "../admin";
 import { Link } from "~/components/link/link";
+import Navbar from "~/components/navbar/navbar";
 
 export const useAddUser = routeAction$(
   async (user, { fail, cookie, redirect }) => {
@@ -55,50 +56,61 @@ export default component$(() => {
   const action = useAddUser();
 
   return (
-    <>
-      <h1 class="text-xl">Create an account</h1>
-      <Form class="flex flex-col" action={action}>
-        <input type="email" name="email" placeholder="Email" autoFocus />
-        {action.value?.failed && (
-          <p class="text-red-500">{action.value.fieldErrors?.email}</p>
-        )}
-        <input
-          type="text"
-          name="username"
-          placeholder="tagtree.link/ Username"
-        />
-        <input type="password" placeholder="Password" name="password" />
-        {action.value?.failed && (
-          <p class="text-red-500">{action.value.fieldErrors?.password}</p>
-        )}
-        <input
-          type="checkbox"
-          name="newsletter"
-          id="newsletter"
-          class="form-checkbox rounded text-pink-500"
-        />
-        <label for="newsletter">Newsletter</label>
-        <p>
-          By clicking <b>Create account</b>, you agree to Tagtree's Terms and
-          Conditions and confirm you have read our Privacy Notice.
-        </p>
-        <button
-          type="submit"
-          class="rounded-full bg-violet-400 text-white px-4 py-2 font-medium mb-3"
+    <div class="flex flex-col min-h-full">
+      <Navbar />
+      <div class="flex-1 px-3 md:px-0 md:w-2/3 lg:w-1/3 ml-auto mr-auto justify-center flex flex-col">
+        <h1 class="text-xl text-center mb-3">Create an account</h1>
+        <Form
+          class="grid grid-cols-1 gap-3 p-5 border bg-white rounded-md drop-shadow-md"
+          action={action}
         >
-          Create account
-        </button>
-      </Form>
-      {action.value?.failed && (
-        <p class="text-red-500">{action.value.message}</p>
-      )}
-      <p>
-        Already have an account? <Link href="/login">Log in</Link>
-      </p>
-      <p>
-        This site is protected by reCAPTCHA and the Google Privacy Policy and
-        Terms of Service apply.
-      </p>
-    </>
+          <input type="email" name="email" placeholder="Email" autoFocus />
+          {action.value?.failed && (
+            <p class="text-red-500">{action.value.fieldErrors?.email}</p>
+          )}
+          <input
+            type="text"
+            name="username"
+            placeholder="tagtree.link/ Username"
+          />
+          <input type="password" placeholder="Password" name="password" />
+          {action.value?.failed && (
+            <p class="text-red-500">{action.value.fieldErrors?.password}</p>
+          )}
+          {action.value?.failed && (
+            <p class="text-red-500">{action.value.message}</p>
+          )}
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              name="newsletter"
+              id="newsletter"
+              class="form-checkbox rounded text-pink-500"
+            />
+            <label for="newsletter" class="ml-2">
+              Newsletter
+            </label>
+          </div>
+          <p>
+            By clicking <b>Create account</b>, you agree to Tagtree's Terms and
+            Conditions and confirm you have read our Privacy Notice.
+          </p>
+          <button
+            type="submit"
+            class="rounded-full bg-violet-400 text-white px-4 py-2 font-medium mb-3"
+          >
+            Create account
+          </button>
+          <p>
+            Already have an account? <Link href="/login">Log in</Link>
+          </p>
+          <p>
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </p>
+        </Form>
+      </div>
+      <div class="flex-1">Footer</div>
+    </div>
   );
 });

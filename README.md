@@ -6,6 +6,7 @@
 - [x] ui state logged in/out (see middleware)
 - [x] logout
 - [x] delete/edit tags
+- [ ] username unique constraint
 - [ ] forgot password
 - [ ] create/update at for tags
 - [ ] user bio
@@ -22,4 +23,3 @@
 - [ ] icons
 - [ ] transitions/animations
 - [ ] organize types
-- [ ] username unique constraint

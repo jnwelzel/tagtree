@@ -8,9 +8,9 @@ import {
 } from "@builder.io/qwik-city";
 import CookiesEnum from "~/utils/CookiesEnum";
 import { addTag, deleteTag, editTag, getUserTags } from "./helper";
-import Logout from "~/components/logout/logout";
 import Plus from "~/components/icons/plus";
 import Tag from "./tag";
+import Navbar from "~/components/navbar/navbar";
 
 export type SessionCookie = {
   email: string;
@@ -90,15 +90,7 @@ export default component$(() => {
 
   return (
     <>
-      <nav class="bg-gray-800 text-white py-4 px-3 mb-6 grid grid-cols-12 2xl:px-0">
-        <div class="col-span-full 2xl:col-start-2 2xl:col-end-12 text-right flex items-center">
-          <div class="mr-auto tagtree text-2xl text-white">Tagtree</div>
-          <div>
-            Welcome <b class="text-violet-300">{signal.value.username}</b> (
-            <Logout />)
-          </div>
-        </div>
-      </nav>
+      <Navbar userName={signal.value.username} />
       <div class="grid grid-cols-12 px-3 2xl:px-0">
         <div class="col-span-full 2xl:col-start-2 2xl:col-end-12">
           {!isFormOpen.value && (

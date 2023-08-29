@@ -6,6 +6,7 @@ import { EndpointEnum } from "~/utils/api";
 import CookiesEnum from "~/utils/CookiesEnum";
 import type { SessionCookie } from "../admin";
 import { Link } from "~/components/link/link";
+import Navbar from "~/components/navbar/navbar";
 
 export const useLoginUser = routeAction$(
   async (userLogin, { fail, cookie, redirect }) => {
@@ -52,8 +53,9 @@ export default component$(() => {
 
   return (
     <div class="flex flex-col min-h-full">
-      <h1 class="text-xl flex-1">Welcome back!</h1>
-      <div class="flex-1 px-3 md:px-0 md:w-2/3 lg:w-1/3 ml-auto mr-auto justify-start flex flex-col">
+      <Navbar />
+      <div class="flex-1 px-3 md:px-0 md:w-2/3 lg:w-1/3 ml-auto mr-auto justify-center flex flex-col">
+        <h1 class="text-xl text-center mb-3">Welcome back!</h1>
         <Form
           class="grid grid-cols-1 gap-3 p-5 border bg-white rounded-md drop-shadow-md"
           action={action}
