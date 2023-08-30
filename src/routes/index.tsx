@@ -4,6 +4,7 @@ import { Link as MyLink } from "~/components/link/link";
 import { useLogout } from "~/components/logout/logout";
 import CookiesEnum from "~/utils/CookiesEnum";
 import styles from "./index.css?inline";
+import Footer from "~/components/footer/footer";
 
 export const useSessionData = routeLoader$(async ({ cookie }) => {
   const isLoggedIn = cookie.has(CookiesEnum.Session);
@@ -56,7 +57,9 @@ export default component$(() => {
         <h2 class="text-xl drop-shadow">All your gamer tags in one place.</h2>
       </div>
 
-      <div class="flex-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
+      <div class="flex-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col justify-end">
+        <Footer />
+      </div>
     </div>
   );
 });
