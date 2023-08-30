@@ -8,7 +8,7 @@
 - [x] delete/edit tags
 - [ ] username unique constraint
 - [ ] forgot password
-- [ ] create/update at for tags
+- [ ] created/updated at field for tags
 - [ ] user bio
 - [ ] recaptcha
 - [ ] labels for tags (alt account, abandoned, main account)

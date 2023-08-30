@@ -1,12 +1,16 @@
-import { component$ } from "@builder.io/qwik";
-import Logout from "../logout/logout";
+import { component$, useSignal } from "@builder.io/qwik";
+import { useLogout } from "../logout/logout";
 import { Link } from "@builder.io/qwik-city";
+import Close from "../icons/close";
 
 interface NavbarProps {
   userName?: string;
 }
 
 export default component$<NavbarProps>(({ userName }) => {
+  const logoutAction = useLogout();
+  const isMenuVisible = useSignal(false);
+
   return (
     <nav class="bg-gray-800 text-white py-4 px-3 mb-6 grid grid-cols-12 2xl:px-0">
       <div class="col-span-full 2xl:col-start-2 2xl:col-end-12 text-right flex items-center">
@@ -14,10 +18,44 @@ export default component$<NavbarProps>(({ userName }) => {
           Tagtree
         </Link>
         {userName && (
-          <div>
-            Welcome <b class="text-violet-300">{userName}</b> (
-            <Logout />)
-          </div>
+          <button
+            class="bg-white rounded-full text-violet-600 h-12 w-12 text-2xl flex items-center justify-center"
+            onClick$={() => (isMenuVisible.value = !isMenuVisible.value)}
+          >
+            {userName.charAt(0).toUpperCase()}
+          </button>
+        )}
+        {isMenuVisible.value && (
+          <>
+            <div class="fixed top-[80px] left-0 right-0 bg-slate-700 flex flex-col z-20 py-3">
+              <div class="relative flex flex-col">
+                <div class="absolute top-0 right-3">
+                  <button onClick$={() => (isMenuVisible.value = false)}>
+                    <Close />
+                  </button>
+                </div>
+                <div class="text-center mb-2">
+                  <b class="text-violet-300 text-lg">{userName}</b>
+                </div>
+                <div class="grid grid-cols-1 gap-2">
+                  <div class="text-center">Profile</div>
+                  <div class="text-center">Settings</div>
+                  <button
+                    onClick$={() => {
+                      logoutAction.submit();
+                    }}
+                  >
+                    Log out
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="z-10 bg-black opacity-20 fixed top-[80px] right-0 bottom-0 left-0"
+              onClick$={() => (isMenuVisible.value = false)}
+            />
+          </>
         )}
       </div>
     </nav>
