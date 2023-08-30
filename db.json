@@ -10,34 +10,10 @@
   ],
   "tags": [
     {
-      "name": "foo",
-      "value": "bar",
+      "name": "PSN",
+      "value": "jon_weasel",
       "userId": "1",
       "id": 1
-    },
-    {
-      "name": "PSN",
-      "value": "chulapa",
-      "id": 2,
-      "userId": 1
-    },
-    {
-      "name": "ayy",
-      "value": "lmao",
-      "id": 3,
-      "userId": 1
-    },
-    {
-      "name": "Doo",
-      "value": "Here",
-      "userId": "1",
-      "id": 4
-    },
-    {
-      "name": "Car",
-      "value": "Fail",
-      "userId": "1",
-      "id": 5
     }
   ]
 }

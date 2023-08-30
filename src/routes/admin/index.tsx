@@ -1,4 +1,5 @@
 import { component$, useSignal } from "@builder.io/qwik";
+import type { RequestHandler } from "@builder.io/qwik-city";
 import {
   Form,
   routeAction$,
@@ -19,11 +20,13 @@ export type SessionCookie = {
   userId: string;
 };
 
-export const useUserData = routeLoader$(async ({ cookie, redirect }) => {
+export const onRequest: RequestHandler = async ({ redirect, cookie }) => {
   if (!cookie.has(CookiesEnum.Session)) {
-    throw redirect(308, "/");
+    throw redirect(308, "/login");
   }
+};
 
+export const useUserData = routeLoader$(async ({ cookie }) => {
   const { username, userId, accessToken } = cookie
     .get(CookiesEnum.Session)
     ?.json() as SessionCookie;

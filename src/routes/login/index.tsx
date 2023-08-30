@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import type { RequestHandler } from "@builder.io/qwik-city";
 import { Form, routeAction$, z, zod$ } from "@builder.io/qwik-city";
 import { loginUser } from "./helper";
 import { getErrorMessage } from "~/utils/errorHandling";
@@ -7,6 +8,12 @@ import CookiesEnum from "~/utils/CookiesEnum";
 import type { SessionCookie } from "../admin";
 import { Link } from "~/components/link/link";
 import Navbar from "~/components/navbar/navbar";
+
+export const onRequest: RequestHandler = async ({ redirect, cookie }) => {
+  if (cookie.has(CookiesEnum.Session)) {
+    throw redirect(308, "/admin");
+  }
+};
 
 export const useLoginUser = routeAction$(
   async (userLogin, { fail, cookie, redirect }) => {

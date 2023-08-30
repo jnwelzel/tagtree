@@ -18,15 +18,15 @@ export default component$(() => {
 
   return (
     <div class="flex flex-col min-h-full text-center">
-      <div class="flex items-center p-4 justify-end border-b border-gray-300 bg-gray-100 fixed top-0 left-0 right-0">
+      <div class="flex items-center p-4 justify-end from-indigo-500 via-purple-500 to-pink-500 fixed top-0 left-0 right-0">
         {!signal.value.isLoggedIn && (
           <>
-            <MyLink href="/login" class="mr-3">
+            <MyLink href="/login" class="mr-3 text-white">
               Login
             </MyLink>
             <Link
               href="/signup"
-              class="rounded-full px-5 py-3 bg-violet-400 text-white"
+              class="rounded-full px-5 py-3 text-white border-2 border-white"
             >
               Create an account
             </Link>
