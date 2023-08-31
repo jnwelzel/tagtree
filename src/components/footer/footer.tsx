@@ -1,11 +1,16 @@
-import { component$, useStylesScoped$ } from "@builder.io/qwik";
-import styles from "./footer.css?inline";
+import { component$ } from "@builder.io/qwik";
 
-export default component$(() => {
-  useStylesScoped$(styles);
+interface FooterProps {
+  translucid?: boolean;
+}
 
+export default component$<FooterProps>(({ translucid = true }) => {
   return (
-    <footer class="grid grid-cols-1 md:grid-cols-4 gap-3 text-white py-4 relative bg-blur">
+    <footer
+      class={`grid grid-cols-1 md:grid-cols-4 gap-3 ${
+        translucid && "text-white"
+      } py-4 relative ${translucid && "bg-white/10"}`}
+    >
       <ul class="flex flex-col">
         <li>Terms</li>
         <li>Privacy</li>
