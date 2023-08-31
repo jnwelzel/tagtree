@@ -9,7 +9,7 @@ type Story = StoryObj;
 
 export default meta;
 
-export const Primary: Story = {
+export const Default: Story = {
   render: () => {
     return <Switch />;
   },

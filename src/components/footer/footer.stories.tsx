@@ -9,8 +9,18 @@ type Story = StoryObj;
 
 export default meta;
 
-export const Primary: Story = {
+export const Translucid: Story = {
   render: () => {
-    return <Footer />;
+    return (
+      <div class="bg-gray-500">
+        <Footer />
+      </div>
+    );
+  },
+};
+
+export const Normal: Story = {
+  render: () => {
+    return <Footer translucid={false} />;
   },
 };

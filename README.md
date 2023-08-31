@@ -6,6 +6,7 @@
 - [x] ui state logged in/out (see middleware)
 - [x] logout
 - [x] delete/edit tags
+- [ ] define layout
 - [ ] username unique constraint
 - [ ] public profile endpoint (view a user's tags by their username ie. "www.tagtree.link/@jonshin")
 - [ ] forgot password
