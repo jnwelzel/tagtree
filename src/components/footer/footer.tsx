@@ -1,8 +1,11 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useStylesScoped$ } from "@builder.io/qwik";
+import styles from "./footer.css?inline";
 
 export default component$(() => {
+  useStylesScoped$(styles);
+
   return (
-    <footer class="grid grid-cols-1 md:grid-cols-4 gap-3 text-white border-t border-white py-4">
+    <footer class="grid grid-cols-1 md:grid-cols-4 gap-3 text-white py-4 relative bg-blur">
       <ul class="flex flex-col">
         <li>Terms</li>
         <li>Privacy</li>
