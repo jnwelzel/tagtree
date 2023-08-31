@@ -7,12 +7,12 @@
 - [x] logout
 - [x] delete/edit tags
 - [ ] username unique constraint
+- [ ] public profile endpoint (view a user's tags by their username ie. "www.tagtree.link/@jonshin")
 - [ ] forgot password
 - [ ] created/updated at field for tags
 - [ ] user bio
 - [ ] recaptcha
 - [ ] labels for tags (alt account, abandoned, main account)
-- [ ] public profile endpoint (view a user's tags by their username ie. "www.tagtree.link/@jonshin")
 - [ ] reorder tags (drag n drop?)
 - [ ] sorting/searching of tags
 - [ ] pub/unpublish profile (settings)
