@@ -94,7 +94,7 @@ export default component$(() => {
   return (
     <>
       <Navbar userName={signal.value.username} />
-      <div class="grid grid-cols-12 px-3 2xl:px-0">
+      <div class="grid grid-cols-12 px-3 2xl:px-0 mt-[100px]">
         <div class="col-span-full 2xl:col-start-2 2xl:col-end-12">
           {!isFormOpen.value && (
             <button

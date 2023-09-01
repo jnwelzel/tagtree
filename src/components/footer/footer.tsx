@@ -12,22 +12,24 @@ export default component$<FooterProps>(({ translucid = true }) => {
       } py-4 relative ${translucid && "bg-white/10"}`}
     >
       <ul class="flex flex-col">
-        <li>Terms</li>
-        <li>Privacy</li>
-        <li>Impressum</li>
+        <li class={`${translucid && "drop-shadow"}`}>Terms</li>
+        <li class={`${translucid && "drop-shadow"}`}>Privacy</li>
+        <li class={`${translucid && "drop-shadow"}`}>Impressum</li>
       </ul>
       <ul class="flex flex-col">
-        <li>Twitter</li>
-        <li>Facebook</li>
-        <li>LinkedIn</li>
+        <li class={`${translucid && "drop-shadow"}`}>Twitter</li>
+        <li class={`${translucid && "drop-shadow"}`}>Facebook</li>
+        <li class={`${translucid && "drop-shadow"}`}>LinkedIn</li>
       </ul>
       <ul class="flex flex-col">
-        <li>About</li>
-        <li>Contact</li>
-        <li>Help</li>
+        <li class={`${translucid && "drop-shadow"}`}>About</li>
+        <li class={`${translucid && "drop-shadow"}`}>Contact</li>
+        <li class={`${translucid && "drop-shadow"}`}>Help</li>
       </ul>
       <ul class="flex flex-col justify-center">
-        <li>© {new Date().getFullYear()} Tagtree. All rights reserved.</li>
+        <li class="drop-shadow">
+          © {new Date().getFullYear()} Tagtree. All rights reserved.
+        </li>
       </ul>
     </footer>
   );

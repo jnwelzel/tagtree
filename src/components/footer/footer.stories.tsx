@@ -12,7 +12,7 @@ export default meta;
 export const Translucid: Story = {
   render: () => {
     return (
-      <div class="bg-gray-500">
+      <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-[1500px]">
         <Footer />
       </div>
     );
@@ -21,6 +21,10 @@ export const Translucid: Story = {
 
 export const Normal: Story = {
   render: () => {
-    return <Footer translucid={false} />;
+    return (
+      <div class="w-[1500px]">
+        <Footer translucid={false} />
+      </div>
+    );
   },
 };

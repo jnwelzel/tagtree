@@ -35,12 +35,12 @@ export default component$(() => {
         )}
         {signal.value.isLoggedIn && (
           <>
-            <MyLink href="/admin" class="mr-3">
+            <MyLink href="/admin" class="mr-3 text-white">
               Admin
             </MyLink>
             <button
               onClick$={() => logoutAction.submit()}
-              class="rounded-full px-5 py-3 bg-violet-400 text-white"
+              class="rounded-full px-5 py-3 text-white border-2 border-white"
             >
               Log out
             </button>
