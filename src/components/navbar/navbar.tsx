@@ -17,7 +17,7 @@ export default component$<NavbarProps>(({ userName }) => {
 
   return (
     <>
-      <nav class="bg-gray-800 text-white py-4 px-3 grid grid-cols-12 2xl:px-0 z-30 fixed top-0 left-0 right-0">
+      <nav class="bg-gray-800 text-white py-4 px-3 grid grid-cols-12 2xl:px-0 z-30 fixed top-0 left-0 right-0 h-[80px] items-center">
         <div class="col-span-full 2xl:col-start-2 2xl:col-end-12 text-right flex items-center">
           <Link href="/" class="mr-auto tagtree-font text-2xl text-white">
             Tagtree
@@ -33,33 +33,35 @@ export default component$<NavbarProps>(({ userName }) => {
         </div>
       </nav>
 
-      <div
-        class={`fixed top-[80px] left-0 right-0 bg-slate-700 flex flex-col z-20 py-3 slide-up text-white ${
-          isMenuVisible.value ? "slide-down" : ""
-        }`}
-      >
-        <div class="relative flex flex-col">
-          <div class="absolute top-0 right-3">
-            <button onClick$={() => (isMenuVisible.value = false)}>
-              <Close />
-            </button>
-          </div>
-          <div class="text-center mb-2">
-            <b class="text-violet-300 text-lg">{userName}</b>
-          </div>
-          <div class="grid grid-cols-1 gap-2">
-            <div class="text-center">Profile</div>
-            <div class="text-center">Settings</div>
-            <button
-              onClick$={() => {
-                logoutAction.submit();
-              }}
-            >
-              Log out
-            </button>
+      {userName && (
+        <div
+          class={`fixed top-[80px] left-0 right-0 bg-slate-700 flex flex-col z-20 py-3 slide-up text-white ${
+            isMenuVisible.value ? "slide-down" : ""
+          }`}
+        >
+          <div class="relative flex flex-col">
+            <div class="absolute top-0 right-3">
+              <button onClick$={() => (isMenuVisible.value = false)}>
+                <Close />
+              </button>
+            </div>
+            <div class="text-center mb-2">
+              <b class="text-violet-300 text-lg">{userName}</b>
+            </div>
+            <div class="grid grid-cols-1 gap-2">
+              <div class="text-center">Profile</div>
+              <div class="text-center">Settings</div>
+              <button
+                onClick$={() => {
+                  logoutAction.submit();
+                }}
+              >
+                Log out
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {isMenuVisible.value && (
         <div

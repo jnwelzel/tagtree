@@ -1,5 +1,4 @@
 import { EndpointEnum, api } from "~/utils/api";
-import type { User } from "../signup/helper";
 
 export type UserLogin = {
   email: string;
@@ -8,7 +7,7 @@ export type UserLogin = {
 
 interface LoginResponse {
   accessToken: string;
-  user: User;
+  tokenType: string;
 }
 
 export const loginUser = async (
@@ -18,4 +17,27 @@ export const loginUser = async (
     EndpointEnum.Login,
     userLogin
   );
+};
+
+interface TagDto {
+  id: number;
+  name: string;
+  description: string;
+  userId: string;
+}
+
+interface UserDto {
+  uuid: string;
+  email: string;
+  userName: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  createdAt: string;
+  updatedAt: string;
+  tags: [TagDto] | [];
+}
+
+export const userInfo = async (accessToken: string): Promise<UserDto> => {
+  return await api.get<UserDto>(EndpointEnum.UserInfo, accessToken);
 };

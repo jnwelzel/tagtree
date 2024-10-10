@@ -1,9 +1,11 @@
 export enum EndpointEnum {
   Signup = "/signup",
-  Login = "/login",
+  Login = "/auth/login",
   Admin = "/admin",
   Tags = "/tags",
+  MyTags = `${Tags}/my-tags`,
   Users = "/users",
+  UserInfo = `${Users}/me`,
 }
 
 async function request<TResponse>(

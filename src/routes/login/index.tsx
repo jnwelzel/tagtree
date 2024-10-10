@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import type { RequestHandler } from "@builder.io/qwik-city";
 import { Form, routeAction$, z, zod$ } from "@builder.io/qwik-city";
-import { loginUser } from "./helper";
+import { loginUser, userInfo } from "./helper";
 import { getErrorMessage } from "~/utils/errorHandling";
 import { EndpointEnum } from "~/utils/api";
 import CookiesEnum from "~/utils/CookiesEnum";
@@ -19,23 +19,25 @@ export const useLoginUser = routeAction$(
   async (userLogin, { fail, cookie, redirect }) => {
     try {
       // Authenticate user
-      const { accessToken, user: authUser } = await loginUser({
+      // 1. Get access token
+      const { accessToken } = await loginUser({
         email: userLogin.email,
         password: userLogin.password,
       });
 
+      const authUser = await userInfo(accessToken);
+
       // Set session cookie
       const sessionCookieData = {
-        username: authUser.username,
+        username: authUser.userName,
         email: authUser.email,
         accessToken,
-        userId: authUser.id.toString(),
       } as SessionCookie;
 
       cookie.set(CookiesEnum.Session, JSON.stringify(sessionCookieData), {
         httpOnly: true,
         secure: true,
-        maxAge: [1, "hours"],
+        maxAge: [1, "days"],
         path: "/",
       });
     } catch (error) {

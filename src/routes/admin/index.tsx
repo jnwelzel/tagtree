@@ -17,7 +17,6 @@ export type SessionCookie = {
   email: string;
   username: string;
   accessToken: string;
-  userId: string;
 };
 
 export const onRequest: RequestHandler = async ({ redirect, cookie }) => {
@@ -27,27 +26,27 @@ export const onRequest: RequestHandler = async ({ redirect, cookie }) => {
 };
 
 export const useUserData = routeLoader$(async ({ cookie }) => {
-  const { username, userId, accessToken } = cookie
+  const { username, accessToken } = cookie
     .get(CookiesEnum.Session)
     ?.json() as SessionCookie;
 
   // Fetch the user's tags
-  const tags = await getUserTags(userId, accessToken);
+  const tags = await getUserTags(accessToken);
 
   return { username, tags };
 });
 
 export const useAddTag = routeAction$(
   async (tag, { cookie }) => {
-    const { userId, accessToken } = cookie
+    const { accessToken } = cookie
       .get(CookiesEnum.Session)
       ?.json() as SessionCookie;
 
-    await addTag(tag, userId, accessToken);
+    await addTag(tag, accessToken);
   },
   zod$({
     name: z.string(),
-    value: z.string(),
+    description: z.string(),
   })
 );
 
@@ -66,15 +65,14 @@ export const useDeleteTag = routeAction$(
 
 export const useEditTag = routeAction$(
   async (tag, { cookie }) => {
-    const { accessToken, userId } = cookie
+    const { accessToken } = cookie
       .get(CookiesEnum.Session)
       ?.json() as SessionCookie;
 
     const dto = {
       name: tag.name,
-      value: tag.value,
+      description: tag.description,
       id: parseInt(tag.tagId),
-      userId,
     };
 
     await editTag(dto, accessToken);
@@ -82,7 +80,7 @@ export const useEditTag = routeAction$(
   zod$({
     tagId: z.string(),
     name: z.string(),
-    value: z.string(),
+    description: z.string(),
   })
 );
 
@@ -121,7 +119,7 @@ export default component$(() => {
                 />
                 <input
                   type="text"
-                  name="value"
+                  name="description"
                   placeholder="ninja, dr_respect..."
                 />
                 <button

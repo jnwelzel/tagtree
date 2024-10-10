@@ -5,15 +5,15 @@ import { Form } from "@builder.io/qwik-city";
 
 interface TagProps {
   name: string;
-  value: string;
+  description: string;
   id: number;
 }
 
-export default component$<TagProps>(({ name, value, id }) => {
+export default component$<TagProps>(({ name, description, id }) => {
   const isDelete = useSignal(false);
   const isEdit = useSignal(false);
   const tagName = useSignal(name);
-  const tagValue = useSignal(value);
+  const tagDescription = useSignal(description);
 
   const deleteAction = useDeleteTag();
   const editAction = useEditTag();
@@ -56,14 +56,18 @@ export default component$<TagProps>(({ name, value, id }) => {
           >
             <div class="grid grid-cols-2 gap-1">
               <input type="text" bind:value={tagName} name="name" />
-              <input type="text" bind:value={tagValue} name="value" />
+              <input
+                type="text"
+                bind:value={tagDescription}
+                name="description"
+              />
             </div>
             <div class="flex justify-evenly">
               <button
                 type="reset"
                 onClick$={() => {
                   tagName.value = name;
-                  tagValue.value = value;
+                  tagDescription.value = description;
                   isEdit.value = false;
                 }}
                 class="rounded-full border px-4 py-1 font-medium bg-white"
@@ -100,7 +104,7 @@ export default component$<TagProps>(({ name, value, id }) => {
           </span>
         </div>
       </div>
-      <div class="p-2">{value}</div>
+      <div class="p-2">{description}</div>
     </article>
   );
 });
