@@ -65,7 +65,7 @@ export default component$(() => {
   return (
     <div class="flex flex-col min-h-full">
       <Navbar />
-      <div class="flex-1 px-3 md:px-0 md:w-2/3 lg:w-1/3 ml-auto mr-auto justify-center flex flex-col">
+      <div class="flex-1 px-3 md:px-0 md:w-96 ml-auto mr-auto justify-center flex flex-col">
         <h1 class="text-xl text-center mb-3">Create an account</h1>
         <Form
           class="grid grid-cols-1 gap-3 p-5 border bg-white rounded-md drop-shadow-md"
@@ -95,10 +95,10 @@ export default component$(() => {
               class="form-checkbox rounded text-pink-500"
             />
             <label for="newsletter" class="ml-2">
-              Newsletter
+              Receive our totally awesome newsletter
             </label>
           </div>
-          <p>
+          <p class="text-sm">
             By clicking <b>Create account</b>, you agree to Tagtree's Terms and
             Conditions and confirm you have read our Privacy Notice.
           </p>
@@ -108,10 +108,10 @@ export default component$(() => {
           >
             Create account
           </button>
-          <p>
+          <p class="text-sm">
             Already have an account? <Link href="/login">Log in</Link>
           </p>
-          <p>
+          <p class="text-sm">
             This site is protected by reCAPTCHA and the Google Privacy Policy
             and Terms of Service apply.
           </p>

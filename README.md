@@ -1,12 +1,14 @@
 # Development
+
 - Duplicate `.env.example`, rename it to `.env` and set `PUBLIC_API_URL` to something like `http://localhost:3000` which is the default for `json-server`
 - Run `$ pnpm api` to start up the REST API backend then `$ pnpm start` to start the Tagtree frontend.
 
 # TODO
+
 - [x] ui state logged in/out (see middleware)
 - [x] logout
 - [x] delete/edit tags
-- [ ] define layout
+- [ ] unify login/signup components, just the switch form+actions
 - [ ] username unique constraint
 - [ ] public profile endpoint (view a user's tags by their username ie. "www.tagtree.link/@jonshin")
 - [ ] forgot password

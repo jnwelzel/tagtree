@@ -63,7 +63,7 @@ export default component$(() => {
   return (
     <div class="flex flex-col min-h-full">
       <Navbar />
-      <div class="flex-1 px-3 md:px-0 md:w-2/3 lg:w-1/3 ml-auto mr-auto justify-center flex flex-col">
+      <div class="flex-1 px-3 md:px-0 md:w-96 ml-auto mr-auto justify-center flex flex-col">
         <h1 class="text-xl text-center mb-3">Welcome back!</h1>
         <Form
           class="grid grid-cols-1 gap-3 p-5 border bg-white rounded-md drop-shadow-md"
@@ -80,17 +80,19 @@ export default component$(() => {
           {action.value?.failed && (
             <p class="text-red-500">{action.value.message}</p>
           )}
-          <p>Forgot password?</p>
+          <Link href="/" class="text-sm">
+            Forgot password?
+          </Link>
           <button
             type="submit"
             class="rounded-full bg-violet-400 text-white px-4 py-2 font-medium"
           >
             Log in
           </button>
-          <p>
+          <p class="text-sm">
             Don't have an account? <Link href="/signup">Sign up</Link>
           </p>
-          <p>
+          <p class="text-sm">
             This site is protected by reCAPTCHA and the Google Privacy Policy
             and Terms of Service apply.
           </p>
