@@ -6,6 +6,7 @@ export enum EndpointEnum {
   MyTags = `${Tags}/my-tags`,
   Users = "/users",
   UserInfo = `${Users}/me`,
+  UserProfile = `${Users}/profile`,
 }
 
 async function request<TResponse>(

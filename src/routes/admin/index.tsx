@@ -12,6 +12,7 @@ import { addTag, deleteTag, editTag, getUserTags } from "./helper";
 import Plus from "~/components/icons/plus";
 import Tag from "./tag";
 import Navbar from "~/components/navbar/navbar";
+import { useUser } from "../layout";
 
 export type SessionCookie = {
   email: string;
@@ -19,21 +20,11 @@ export type SessionCookie = {
   accessToken: string;
 };
 
-export const onRequest: RequestHandler = async ({ redirect, cookie }) => {
-  if (!cookie.has(CookiesEnum.Session)) {
-    throw redirect(308, "/login");
-  }
-};
-
-export const useUserData = routeLoader$(async ({ cookie }) => {
-  const { username, accessToken } = cookie
-    .get(CookiesEnum.Session)
-    ?.json() as SessionCookie;
-
-  // Fetch the user's tags
+export const useTagsList = routeLoader$(async ({ sharedMap }) => {
+  const { accessToken } = sharedMap.get("user") as SessionCookie;
   const tags = await getUserTags(accessToken);
 
-  return { username, tags };
+  return tags;
 });
 
 export const useAddTag = routeAction$(
@@ -85,13 +76,14 @@ export const useEditTag = routeAction$(
 );
 
 export default component$(() => {
-  const signal = useUserData();
+  const tags = useTagsList();
+  const user = useUser();
   const isFormOpen = useSignal(false);
   const addTagAction = useAddTag();
 
   return (
     <>
-      <Navbar userName={signal.value.username} />
+      <Navbar userName={user.value?.username} />
       <div class="grid grid-cols-12 px-3 2xl:px-0 mt-[100px]">
         <div class="col-span-full 2xl:col-start-2 2xl:col-end-12">
           {!isFormOpen.value && (
@@ -139,14 +131,12 @@ export default component$(() => {
             </div>
           )}
 
-          {signal.value.tags.length === 0 && (
+          {tags.value?.length === 0 && (
             <p class="text-red-500">You haven't added any gamer tags yet.</p>
           )}
-          {signal.value.tags.length > 0 && (
+          {(tags.value?.length ?? 0) > 0 && (
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {signal.value.tags.map((tag) => (
-                <Tag key={tag.id} {...tag} />
-              ))}
+              {tags?.value?.map((tag) => <Tag key={tag.id} {...tag} />)}
             </div>
           )}
         </div>

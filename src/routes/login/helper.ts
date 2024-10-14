@@ -35,7 +35,6 @@ interface UserDto {
   dateOfBirth: string;
   createdAt: string;
   updatedAt: string;
-  tags: [TagDto] | [];
 }
 
 export const userInfo = async (accessToken: string): Promise<UserDto> => {

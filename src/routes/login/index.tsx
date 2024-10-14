@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import type { RequestHandler } from "@builder.io/qwik-city";
 import { Form, routeAction$, z, zod$ } from "@builder.io/qwik-city";
 import { loginUser, userInfo } from "./helper";
 import { getErrorMessage } from "~/utils/errorHandling";
@@ -9,32 +8,28 @@ import type { SessionCookie } from "../admin";
 import { Link } from "~/components/link/link";
 import Navbar from "~/components/navbar/navbar";
 
-export const onRequest: RequestHandler = async ({ redirect, cookie }) => {
-  if (cookie.has(CookiesEnum.Session)) {
-    throw redirect(308, "/admin");
-  }
-};
-
 export const useLoginUser = routeAction$(
   async (userLogin, { fail, cookie, redirect }) => {
     try {
-      // Authenticate user
+      // User Authentication
+
       // 1. Get access token
       const { accessToken } = await loginUser({
         email: userLogin.email,
         password: userLogin.password,
       });
 
+      // 2. Get user info through token
       const authUser = await userInfo(accessToken);
 
-      // Set session cookie
-      const sessionCookieData = {
+      const userData = {
         username: authUser.userName,
         email: authUser.email,
         accessToken,
       } as SessionCookie;
 
-      cookie.set(CookiesEnum.Session, JSON.stringify(sessionCookieData), {
+      // 3. Create user session cookie so shared map can retrieve it across server restarts etc
+      cookie.set(CookiesEnum.Session, JSON.stringify(userData), {
         httpOnly: true,
         secure: true,
         maxAge: [1, "days"],
@@ -46,7 +41,7 @@ export const useLoginUser = routeAction$(
       });
     }
 
-    // Redirect to admin page
+    // If success redirect to admin page
     throw redirect(308, EndpointEnum.Admin);
   },
   zod$({
@@ -80,7 +75,7 @@ export default component$(() => {
           {action.value?.failed && (
             <p class="text-red-500">{action.value.message}</p>
           )}
-          <Link href="/" class="text-sm">
+          <Link href="/" class="text-sm" underline>
             Forgot password?
           </Link>
           <button
@@ -90,7 +85,10 @@ export default component$(() => {
             Log in
           </button>
           <p class="text-sm">
-            Don't have an account? <Link href="/signup">Sign up</Link>
+            Don't have an account?{" "}
+            <Link href="/signup" underline>
+              Sign up
+            </Link>
           </p>
           <p class="text-sm">
             This site is protected by reCAPTCHA and the Google Privacy Policy

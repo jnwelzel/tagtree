@@ -78,7 +78,7 @@ export default component$(() => {
           <input
             type="text"
             name="username"
-            placeholder="tagtree.link/ Username"
+            placeholder="tagtree.link/@username"
           />
           <input type="password" placeholder="Password" name="password" />
           {action.value?.failed && (
@@ -109,7 +109,10 @@ export default component$(() => {
             Create account
           </button>
           <p class="text-sm">
-            Already have an account? <Link href="/login">Log in</Link>
+            Already have an account?{" "}
+            <Link href="/login" underline>
+              Log in
+            </Link>
           </p>
           <p class="text-sm">
             This site is protected by reCAPTCHA and the Google Privacy Policy

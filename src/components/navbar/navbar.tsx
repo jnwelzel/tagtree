@@ -1,9 +1,9 @@
 import { component$, useSignal, useStylesScoped$ } from "@builder.io/qwik";
 import { useLogout } from "../logout/logout";
-import { Link } from "@builder.io/qwik-city";
 import Close from "../icons/close";
 
 import styles from "./navbar.css?inline";
+import { Link } from "../link/link";
 
 interface NavbarProps {
   userName?: string;
@@ -46,11 +46,17 @@ export default component$<NavbarProps>(({ userName }) => {
               </button>
             </div>
             <div class="text-center mb-2">
-              <b class="text-violet-300 text-lg">{userName}</b>
+              <Link href="/admin">
+                <b class="text-violet-300 text-lg">{userName}</b>
+              </Link>
             </div>
             <div class="grid grid-cols-1 gap-2">
-              <div class="text-center">Profile</div>
-              <div class="text-center">Settings</div>
+              <Link class="text-center" href={`/@${userName}`}>
+                Profile
+              </Link>
+              <Link class="text-center" href="/settings">
+                Settings
+              </Link>
               <button
                 onClick$={() => {
                   logoutAction.submit();
