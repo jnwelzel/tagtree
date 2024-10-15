@@ -18,8 +18,8 @@ export default component$(() => {
   useStylesScoped$(styles);
 
   return (
-    <div class="flex flex-col min-h-full text-center">
-      <div class="flex items-center p-4 justify-end from-indigo-500 via-purple-500 to-pink-500 fixed top-0 left-0 right-0">
+    <div class="flex flex-col min-h-full text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+      <div class="max-w-[1274px] mx-auto flex w-full items-center p-4 justify-end fixed top-0 left-0 right-0">
         {!signal.value.isLoggedIn && (
           <>
             <MyLink href="/login" class="mr-3 text-white">
@@ -48,16 +48,41 @@ export default component$(() => {
         )}
       </div>
 
-      <div class="flex-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
-
-      <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-9 text-white flex-1 flex flex-col items-center justify-center relative tagtree-gradient">
-        <h1 class="text-7xl md:text-9xl tagtree-font drop-shadow-md">
-          Tagtree
-        </h1>
-        <h2 class="text-xl drop-shadow">All your gamer tags in one place.</h2>
+      <div class="flex flex-col mt-32 md:mt-[256px]">
+        <div class="max-w-[1274px] mx-auto flex flex-col p-4 gap-4 md:gap-8">
+          <div class="py-9 text-white relative tagtree-logo">
+            <h1 class="text-7xl md:text-9xl tagtree-font drop-shadow-md">
+              Tagtree
+            </h1>
+          </div>
+          <div class="max-w-[500px] text-left flex flex-col gap-4 md:gap-8">
+            <h2 class="text-4xl md:text-7xl drop-shadow font-black">
+              All your gamer tags in one place.
+            </h2>
+            <p>
+              One link to help you share all your gamer tags from XBox, PSN,
+              Steam, Epic and other gaming platforms.{" "}
+            </p>
+          </div>
+          <form class="flex self-center gap-3 justify-center w-full">
+            <input
+              name="userName"
+              class="w-full"
+              type="text"
+              placeholder="tagtr.ee/@yourname"
+            />
+            <button class="whitespace-nowrap rounded-full px-5 py-3 text-white border-2 border-white">
+              Claim your Tagtree
+            </button>
+          </form>
+        </div>
       </div>
 
-      <div class="flex-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex flex-col justify-end">
+      <div class="grid grid-cols-1 md:grid-cols-12">
+        <div class="lg:col-start-3 lg:col-span-8 gap-3 lg:gap-0 grid grid-cols-1 lg:grid-cols-2 justify-center"></div>
+      </div>
+
+      <div class="flex-1 flex flex-col justify-end">
         <Footer />
       </div>
     </div>

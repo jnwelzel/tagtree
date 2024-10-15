@@ -1,5 +1,0 @@
-{
-  "/users/:userId/tags/:tagId": "/tags/:tagId",
-  "users": 600,
-  "tags": 644
-}

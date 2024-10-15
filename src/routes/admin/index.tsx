@@ -1,5 +1,4 @@
 import { component$, useSignal } from "@builder.io/qwik";
-import type { RequestHandler } from "@builder.io/qwik-city";
 import {
   Form,
   routeAction$,
@@ -7,7 +6,6 @@ import {
   z,
   zod$,
 } from "@builder.io/qwik-city";
-import CookiesEnum from "~/utils/CookiesEnum";
 import { addTag, deleteTag, editTag, getUserTags } from "./helper";
 import Plus from "~/components/icons/plus";
 import Tag from "./tag";
@@ -28,10 +26,8 @@ export const useTagsList = routeLoader$(async ({ sharedMap }) => {
 });
 
 export const useAddTag = routeAction$(
-  async (tag, { cookie }) => {
-    const { accessToken } = cookie
-      .get(CookiesEnum.Session)
-      ?.json() as SessionCookie;
+  async (tag, { sharedMap }) => {
+    const { accessToken } = sharedMap.get("user") as SessionCookie;
 
     await addTag(tag, accessToken);
   },
@@ -42,10 +38,8 @@ export const useAddTag = routeAction$(
 );
 
 export const useDeleteTag = routeAction$(
-  async (tag, { cookie }) => {
-    const { accessToken } = cookie
-      .get(CookiesEnum.Session)
-      ?.json() as SessionCookie;
+  async (tag, { sharedMap }) => {
+    const { accessToken } = sharedMap.get("user") as SessionCookie;
     const success = await deleteTag(tag.tagId, accessToken);
     return success;
   },
@@ -55,10 +49,8 @@ export const useDeleteTag = routeAction$(
 );
 
 export const useEditTag = routeAction$(
-  async (tag, { cookie }) => {
-    const { accessToken } = cookie
-      .get(CookiesEnum.Session)
-      ?.json() as SessionCookie;
+  async (tag, { sharedMap }) => {
+    const { accessToken } = sharedMap.get("user") as SessionCookie;
 
     const dto = {
       name: tag.name,

@@ -37,7 +37,9 @@ export const useLoginUser = routeAction$(
       });
     } catch (error) {
       return fail(400, {
-        message: getErrorMessage(error),
+        message:
+          getErrorMessage(error) ||
+          "Login failed. Check your e-mail and password.",
       });
     }
 
@@ -65,15 +67,19 @@ export default component$(() => {
           action={action}
         >
           <input type="email" name="email" placeholder="Email" autoFocus />
-          {action.value?.failed && (
-            <p class="text-red-500">{action.value.fieldErrors?.email}</p>
+          {action.value?.fieldErrors?.email && (
+            <p class="text-red-500 text-sm">
+              {action.value.fieldErrors?.email}
+            </p>
           )}
           <input type="password" name="password" placeholder="Password" />
-          {action.value?.failed && (
-            <p class="text-red-500">{action.value.fieldErrors?.password}</p>
+          {action.value?.fieldErrors?.password && (
+            <p class="text-red-500 text-sm">
+              {action.value.fieldErrors?.password}
+            </p>
           )}
           {action.value?.failed && (
-            <p class="text-red-500">{action.value.message}</p>
+            <p class="text-red-500 text-sm">{action.value.message}</p>
           )}
           <Link href="/" class="text-sm" underline>
             Forgot password?

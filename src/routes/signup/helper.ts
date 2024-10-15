@@ -12,8 +12,11 @@ export type User = {
 };
 
 export type UserDTO = {
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
   email: string;
-  username: string;
+  userName: string;
   newsletter: boolean;
   password: string;
   activatedAt?: string;

@@ -1,5 +1,5 @@
 export enum EndpointEnum {
-  Signup = "/signup",
+  Signup = "/auth/register",
   Login = "/auth/login",
   Admin = "/admin",
   Tags = "/tags",

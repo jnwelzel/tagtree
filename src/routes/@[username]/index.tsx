@@ -20,7 +20,7 @@ export default component$(() => {
     <>
       <Navbar userName={user.value?.username} />
       {profile.value ? (
-        <div class="grid grid-cols-12 mt-[100px]">
+        <div class="grid grid-cols-12 px-3 2xl:px-0 mt-[100px]">
           <div class="col-span-full 2xl:col-start-2 2xl:col-end-12">
             <p>Username: {profile.value.username}</p>
 
