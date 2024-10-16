@@ -48,14 +48,14 @@ export default component$(() => {
         )}
       </div>
 
-      <div class="flex flex-col mt-32 md:mt-[256px]">
-        <div class="max-w-[1274px] mx-auto flex flex-col p-4 gap-4 md:gap-8">
+      <div class="flex flex-col mt-[150px] md:mt-[256px]">
+        <div class="max-w-[1274px] mx-auto flex flex-col p-4 gap-6 md:gap-8">
           <div class="py-9 text-white relative tagtree-logo">
             <h1 class="text-7xl md:text-9xl tagtree-font drop-shadow-md">
               Tagtree
             </h1>
           </div>
-          <div class="max-w-[500px] text-left flex flex-col gap-4 md:gap-8">
+          <div class="max-w-[500px] text-left flex flex-col gap-6 md:gap-8">
             <h2 class="text-4xl md:text-7xl drop-shadow font-black">
               All your gamer tags in one place.
             </h2>
@@ -67,7 +67,7 @@ export default component$(() => {
           <form class="flex self-center gap-3 justify-center w-full">
             <input
               name="userName"
-              class="w-full"
+              class="w-full rounded"
               type="text"
               placeholder="tagtr.ee/@yourname"
             />
