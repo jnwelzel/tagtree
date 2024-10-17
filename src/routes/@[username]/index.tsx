@@ -3,6 +3,7 @@ import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { UserProfile, getProfileData } from "./helper";
 import Navbar from "~/components/navbar/navbar";
 import { useUser } from "../layout";
+import Footer from "~/components/footer/footer";
 
 export const useProfileData = routeLoader$(async ({ params }) => {
   const { username } = params;
@@ -17,9 +18,9 @@ export default component$(() => {
   const user = useUser();
 
   return (
-    <>
+    <div class="flex flex-col min-h-full">
       <Navbar userName={user.value?.username} />
-      <div class="max-w-[1274px] mx-auto flex p-4">
+      <div class="max-w-[1274px] mx-auto flex p-4 flex-1 w-full">
         {profile.value ? (
           <div class="grid grid-cols-12 mt-[100px]">
             <div class="col-span-full">
@@ -42,6 +43,7 @@ export default component$(() => {
           <div>User {loc.params.username} not found.</div>
         )}
       </div>
-    </>
+      <Footer translucid={false} />
+    </div>
   );
 });

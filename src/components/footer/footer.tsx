@@ -7,7 +7,7 @@ interface FooterProps {
 export default component$<FooterProps>(({ translucid = true }) => {
   return (
     <footer
-      class={`${translucid && "text-white"} py-4 relative ${translucid && "bg-white/10"}`}
+      class={`${translucid && "text-white"} py-4 relative ${translucid && "bg-white/10"} ${!translucid && "border-t bg-gray-50"}`}
     >
       <div class="grid grid-cols-3 md:grid-cols-4 gap-3 max-w-[1274px] mx-auto w-full px-4">
         <ul class="flex flex-col md:items-start">

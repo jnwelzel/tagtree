@@ -63,18 +63,21 @@ export default component$(() => {
               One link to help you share all your gamer tags from XBox, PSN,
               Steam, Epic and other gaming platforms.{" "}
             </p>
+            <form class="flex self-center gap-3 w-full flex-wrap">
+              <div class="min-w-[174px] flex-1 relative prefix flex items-center">
+                <input
+                  name="userName"
+                  class="rounded w-full h-[52px] indent-[75px]"
+                  type="text"
+                  placeholder="yourname"
+                  autoComplete="username"
+                />
+              </div>
+              <button class="whitespace-nowrap rounded-full px-5 py-3 text-white border-2 border-white">
+                Claim your Tagtree
+              </button>
+            </form>
           </div>
-          <form class="flex self-center gap-3 justify-center w-full">
-            <input
-              name="userName"
-              class="w-full rounded"
-              type="text"
-              placeholder="tagtr.ee/@yourname"
-            />
-            <button class="whitespace-nowrap rounded-full px-5 py-3 text-white border-2 border-white">
-              Claim your Tagtree
-            </button>
-          </form>
         </div>
       </div>
 

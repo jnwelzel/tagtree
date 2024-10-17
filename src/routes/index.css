@@ -11,3 +11,13 @@
   background-position: center;
   background-size: contain;
 }
+
+.prefix::after {
+  content: "tagtr.ee/@";
+  position: absolute;
+  left: 12px;
+  top: 15px;
+  background-color: white;
+  height: 20px;
+  color: #787878;
+}

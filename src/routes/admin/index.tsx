@@ -11,6 +11,7 @@ import Plus from "~/components/icons/plus";
 import Tag from "./tag";
 import Navbar from "~/components/navbar/navbar";
 import { useUser } from "../layout";
+import Footer from "~/components/footer/footer";
 
 export type SessionCookie = {
   email: string;
@@ -74,9 +75,9 @@ export default component$(() => {
   const addTagAction = useAddTag();
 
   return (
-    <>
+    <div class="flex flex-col min-h-full">
       <Navbar userName={user.value?.username} />
-      <div class="max-w-[1274px] mx-auto flex p-4">
+      <div class="max-w-[1274px] mx-auto flex p-4 flex-1 w-full">
         <div class="grid grid-cols-12 mt-[100px] w-full">
           <div class="col-span-full">
             {!isFormOpen.value && (
@@ -135,6 +136,7 @@ export default component$(() => {
           </div>
         </div>
       </div>
-    </>
+      <Footer translucid={false} />
+    </div>
   );
 });
