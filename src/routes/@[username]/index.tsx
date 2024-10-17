@@ -19,27 +19,29 @@ export default component$(() => {
   return (
     <>
       <Navbar userName={user.value?.username} />
-      {profile.value ? (
-        <div class="grid grid-cols-12 px-3 2xl:px-0 mt-[100px]">
-          <div class="col-span-full 2xl:col-start-2 2xl:col-end-12">
-            <p>Username: {profile.value.username}</p>
+      <div class="max-w-[1274px] mx-auto flex p-4">
+        {profile.value ? (
+          <div class="grid grid-cols-12 mt-[100px]">
+            <div class="col-span-full">
+              <p>Username: {profile.value.username}</p>
 
-            <p>Member since {profile.value.joinedDate}</p>
+              <p>Member since {profile.value.joinedDate}</p>
 
-            <p>Tags</p>
-            <div>
-              {profile.value.tags.map((tag) => (
-                <div>
-                  <p>Name: {tag.name}</p>
-                  <p>Description: {tag.description}</p>
-                </div>
-              ))}
+              <p>Tags</p>
+              <div class="grid grid-cols-2 gap-3">
+                {profile.value.tags.map((tag) => (
+                  <div class="p-3 border rounded shadow">
+                    <p>Name: {tag.name}</p>
+                    <p>Description: {tag.description}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <div>User {loc.params.username} not found.</div>
-      )}
+        ) : (
+          <div>User {loc.params.username} not found.</div>
+        )}
+      </div>
     </>
   );
 });

@@ -17,8 +17,8 @@ export default component$<NavbarProps>(({ userName }) => {
 
   return (
     <>
-      <nav class="bg-gray-800 text-white py-4 px-3 grid grid-cols-12 2xl:px-0 z-30 fixed top-0 left-0 right-0 h-[80px] items-center">
-        <div class="col-span-full 2xl:col-start-2 2xl:col-end-12 text-right flex items-center">
+      <nav class="bg-gray-800 text-white py-4 z-30 fixed top-0 left-0 right-0 h-[80px] items-center">
+        <div class="text-right flex items-center max-w-[1274px] mx-auto w-full px-4">
           <Link href="/" class="mr-auto tagtree-font text-2xl text-white">
             Tagtree
           </Link>
