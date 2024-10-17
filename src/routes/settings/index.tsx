@@ -8,9 +8,11 @@ export default component$(() => {
   return (
     <>
       <Navbar userName={user.value?.username} />
-      <div class="grid grid-cols-12 px-3 2xl:px-0 mt-[100px]">
-        <div class="col-span-full 2xl:col-start-2 2xl:col-end-12">
-          <h1>Settings</h1>
+      <div class="max-w-[1274px] mx-auto flex p-4">
+        <div class="grid grid-cols-12 mt-[100px]">
+          <div class="col-span-full 2xl:col-start-2 2xl:col-end-12">
+            <h1>Settings</h1>
+          </div>
         </div>
       </div>
     </>

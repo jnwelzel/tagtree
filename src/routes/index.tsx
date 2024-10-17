@@ -51,7 +51,7 @@ export default component$(() => {
       <div class="flex flex-col mt-[150px] md:mt-[256px]">
         <div class="max-w-[1274px] mx-auto flex flex-col p-4 gap-6 md:gap-8">
           <div class="py-9 text-white relative tagtree-logo">
-            <h1 class="text-7xl md:text-9xl tagtree-font drop-shadow-md">
+            <h1 class="text-8xl md:text-[200px] tagtree-font drop-shadow-md">
               Tagtree
             </h1>
           </div>
